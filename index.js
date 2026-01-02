@@ -341,7 +341,7 @@ if (beautify) {
         const highlightShrinkClass = isHighlightShrink === true ? "closed" : "";
         const highlightShrinkEle =
           isHighlightShrink !== undefined
-            ? '<i class="fa fa-angle-down expand ${highlightShrinkClass}"></i>'
+            ? '<i class="fa fa-angle-down expand ' + highlightShrinkClass + '"></i>'
             : "";
         const highlightCopyEle = highlightCopy
           ? '<div class="copy-notice"></div><i class="fa fa-paste copy-button" title="Copy Code"></i>'
@@ -380,9 +380,8 @@ if (beautify) {
           $buttonParent.classList.add("copy-true");
           const selection = window.getSelection();
           const range = document.createRange();
-          const preCodeSelector = "div.codeblock .code pre";
           range.selectNodeContents(
-            $buttonParent.querySelectorAll('${preCodeSelector}')[0]
+            $buttonParent.querySelectorAll('div.codeblock .code pre')[0]
           );
           selection.removeAllRanges();
           selection.addRange(range);
@@ -421,7 +420,7 @@ if (beautify) {
 
           if (isShowTool) {
             const hlTools = document.createElement("div");
-            hlTools.className = 'shiki-tools ${highlightShrinkClass}';
+            hlTools.className = 'shiki-tools ' + highlightShrinkClass;
             hlTools.innerHTML = highlightShrinkEle + lang + highlightCopyEle;
             hlTools.addEventListener("click", highlightToolsFn);
             fragment.appendChild(hlTools);
@@ -447,7 +446,7 @@ if (beautify) {
             let langName = item.getAttribute("class").split(" ")[1];
             if (langName === "plain" || langName === undefined)
               langName = "PlainText";
-            const highlightLangEle = '<div class="code-lang">${langName}</div>';
+            const highlightLangEle = '<div class="code-lang">' + langName + '</div>';
             createEle(highlightLangEle, item, "hl");
           } else {
             createEle("", item, "hl");
