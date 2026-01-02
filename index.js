@@ -302,6 +302,25 @@ if (config.highlight_height_limit) {
   });
 }
 
+hexo.extend.injector.register("body_end", () => {
+  return `
+  <script>
+    const CODE_CONFIG = {
+      beautify: ${beautify},
+      highlightCopy: ${highlight_copy},
+      highlightLang: ${highlight_lang},
+      highlightHeightLimit: ${highlight_height_limit},
+      isHighlightShrink: ${is_highlight_shrink},
+      copy: {
+        success: '${success}',
+        error: '${error}',
+        noSupport: '${no_support}',
+      }
+    };
+  </script>
+  `;
+});
+
 if (beautify) {
   hexo.extend.injector.register("body_end", () => {
     return `
@@ -438,41 +457,11 @@ if (beautify) {
 
       document.addEventListener("pjax:success", addHighlightTool);
       document.addEventListener("DOMContentLoaded", addHighlightTool);
-
-      const CODE_CONFIG = {
-        beautify: ${beautify},
-        highlightCopy: ${highlight_copy},
-        highlightLang: ${highlight_lang},
-        highlightHeightLimit: ${highlight_height_limit},
-        isHighlightShrink: ${is_highlight_shrink},
-        copy: {
-          success: '${success}',
-          error: '${error}',
-          noSupport: '${no_support}',
-        }
-      };
     </script>
     `;
   });
 }
-hexo.extend.injector.register("body_end", () => {
-  return `
-  <script>
-  const CODE_CONFIG = {
-    beautify: ${beautify},
-    highlightCopy: ${highlight_copy},
-    highlightLang: ${highlight_lang},
-    highlightHeightLimit: ${highlight_height_limit},
-    isHighlightShrink: ${is_highlight_shrink},
-    copy: {
-      success: '${success}',
-      error: '${error}',
-      noSupport: '${no_support}',
-    }
-  };
-  </script>
-  `;
-});
+
 return shiki
   .getHighlighter({
     theme,
