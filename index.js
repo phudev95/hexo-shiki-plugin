@@ -67,14 +67,6 @@ hexo.extend.injector.register("body_end", () => {
       noSupport: '${no_support}',
     }
   };
-  console.log(
-    \`%c hexo-shiki-plugin %c ${
-      "v" + version
-    } %c https://github.com/nova1751/hexo-shiki-plugin\`,
-    "color: #fff; background: #5f5f5f",
-    "color: #fff; background: #80c8f8",
-    ""
-  );
   </script>
   `;
 });
