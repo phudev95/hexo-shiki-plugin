@@ -22,10 +22,7 @@ const codeblockTheme = themes.has(theme) ? theme : "one-dark-pro";
 const css = hexo.extend.helper.get("css").bind(hexo);
 const js = hexo.extend.helper.get("js").bind(hexo);
 hexo.extend.injector.register("head_end", () => {
-  return css(
-    css_cdn ||
-      "https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css"
-  );
+  return css(css_cdn || "@lib/codeblock.css");
 });
 hexo.extend.injector.register("head_end", () => {
   return themes.get(codeblockTheme);
@@ -46,10 +43,7 @@ if (config.highlight_height_limit) {
 
 if (beautify) {
   hexo.extend.injector.register("body_end", () => {
-    return js(
-      js_cdn ||
-        "https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.js"
-    );
+    return js(js_cdn || "@lib/codeblock.js");
   });
 }
 hexo.extend.injector.register("body_end", () => {
