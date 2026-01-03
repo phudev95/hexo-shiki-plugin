@@ -142,6 +142,7 @@ hexo.extend.injector.register("head_end", () => {
         box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
         content: " ";
       }
+
       /* bottom toolbar */
       .code-expand-btn {
         position: absolute;
@@ -226,6 +227,7 @@ hexo.extend.injector.register("head_end", () => {
         -ms-transform: rotate(180deg);
         transform: rotate(180deg);
       }
+
       /* codeblock */
       figure.shiki div.codeblock {
         display: block;
@@ -252,13 +254,6 @@ hexo.extend.injector.register("head_end", () => {
       }
       figure.shiki pre code {
         background: none !important;
-      }
-      figure.shiki .codeblock pre * {
-        font-size: 1em;
-        font-family: Consolas, "Fira Code", "Fira Mono", Menlo, "DejaVu Sans Mono",
-          monospace, 宋体;
-        overflow: auto !important;
-        line-height: 1.6;
       }
       figure.shiki .code pre {
         padding-right: 10px !important;
