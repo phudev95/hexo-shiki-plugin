@@ -213,7 +213,7 @@ hexo.extend.injector.register("head_end", () => {
       }
       .code-expand-btn i {
         padding: 6px 0;
-        color: var(--hlnumber-color);
+        color: var(--hlexpand-color);
         -webkit-animation: code-expand-key 1.2s infinite;
         -moz-animation: code-expand-key 1.2s infinite;
         -o-animation: code-expand-key 1.2s infinite;
