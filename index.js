@@ -1,8 +1,6 @@
 const shiki = require("shiki-nova1751");
 const stripIndent = require("strip-indent");
 const themes = require("./lib/themes");
-const css = hexo.extend.helper.get("css").bind(hexo);
-const js = hexo.extend.helper.get("js").bind(hexo);
 const codeMatch =
   /(?<quote>[> ]*)(?<ul>(-|\d+\.)?)(?<start>\s*)(?<tick>~{3,}|`{3,}) *(?<args>.*)\n(?<code>[\s\S]*?)\k<quote>\s*\k<tick>(?<end>\s*)$/gm;
 const config = hexo.config.shiki;
@@ -27,16 +25,13 @@ hexo.extend.injector.register("head_end", () => {
   return themes.get(codeblockTheme);
 }, applyTo);
 
-hexo.extend.injector.register("head_end", () => {
+hexo.extend.injector.register("body_end", () => {
   const link = css_cdn || "https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css";
-  return `
-  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="${link}">
-  <noscript><link rel="stylesheet" href="${link}"></noscript>
-  `;
+  return `<link rel="stylesheet" href="${link}">`;
 }, applyTo);
 
 if (config.highlight_height_limit) {
-  hexo.extend.injector.register("head_end", () => {
+  hexo.extend.injector.register("body_end", () => {
     return `
       <style>
         .code-expand-btn:not(.expand-done) ~ div.codeblock,
