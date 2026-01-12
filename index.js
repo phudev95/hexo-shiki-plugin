@@ -28,7 +28,11 @@ hexo.extend.injector.register("head_end", () => {
 }, applyTo);
 
 hexo.extend.injector.register("head_end", () => {
-  return css(css_cdn || "https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css");
+  const link = css_cdn || "https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.css";
+  return `
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="${link}">
+  <noscript><link rel="stylesheet" href="${link}"></noscript>
+  `;
 }, applyTo);
 
 if (config.highlight_height_limit) {
@@ -66,7 +70,7 @@ hexo.extend.injector.register("body_end", () => {
 }, applyTo);
 
 if (beautify) {
-  hexo.extend.injector.register("body_end", () => {
+  hexo.extend.injector.register("head_end", () => {
     const path = js_cdn || "https://cdn.jsdelivr.net/npm/hexo-shiki-plugin@latest/lib/codeblock.js";
     return `<script defer="defer" src="${path}"></script>`;
   }, applyTo);
